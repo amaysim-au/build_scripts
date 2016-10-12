@@ -142,10 +142,10 @@ function monitor_transition() {
     echo "Transitioning status is now $is_transitioning"
 }
 
-#is_sevice_exists=`$rancher_command --environment $env inspect $stack/$service | head -n1`
-#if [[ $is_sevice_exists != *"Not found"* ]]
-#then
-#    exit_if_service_currently_unhealthy
-#    confirm_upgrade_if_previous_upgrade_pending
-#fi
-#upgrade_the_service
+is_sevice_exists=`$rancher_command --environment $env inspect $stack/$service | head -n1`
+if [[ $is_sevice_exists != *"Not found"* ]]
+then
+    exit_if_service_currently_unhealthy
+    confirm_upgrade_if_previous_upgrade_pending
+fi
+upgrade_the_service
