@@ -1,11 +1,15 @@
 #!/bin/bash -e
 
-usage="$(basename "$0") [-h] [-e ENVIRONMENT] -- script to upgrade and deploy poseidon containers in the given environment.
+usage="$(basename "$0") [-h] [-e ENVIRONMENT] [-s STACK] [-c SERVICE] [-r RANCHER_COMMAND] [-w WAIT_TIME_SECS] -- script to upgrade and deploy containers in the given environment.
 Make sure that you have rancher environment options set and rancher cli installed before running the script.
 
 where:
 -h  show this help text
--e  set the rancher environment (default: Dev)"
+-e  set the rancher environment (default: Dev)
+-s  set the rancher stack (default: QA)
+-c  set the rancher service (default: poseidon-app)
+-r  set the rancher command (default: ./rancher)
+-w  set the wait time in seconds (default: 120)"
 
 env=Dev
 stack=QA
@@ -14,12 +18,21 @@ rancher_command=./rancher
 WAIT_TIMEOUT=120
 NUMBER_OF_TIMES_TO_LOOP=$(( $WAIT_TIMEOUT/10 ))
 
-while getopts ':e:h' option; do
+while getopts ':e:s:c:r:w:h' option; do
     case "$option" in
         h)  echo "$usage"
             exit
             ;;
         e)  env=$OPTARG
+            ;;
+        s)  stack=$OPTARG
+            ;;
+        c)  service=$OPTARG
+            ;;
+        r)  rancher_command=$OPTARG
+            ;;
+        w)  WAIT_TIMEOUT=$OPTARG
+            NUMBER_OF_TIMES_TO_LOOP=$(( $WAIT_TIMEOUT/10 ))
             ;;
         :)  printf "missing argument for -%s\n" "$OPTARG" >&2
             echo "$usage" >&2
@@ -129,10 +142,10 @@ function monitor_transition() {
     echo "Transitioning status is now $is_transitioning"
 }
 
-is_sevice_exists=`$rancher_command --environment $env inspect $stack/$service | head -n1`
-if [[ $is_sevice_exists != *"Not found"* ]]
-then
-    exit_if_service_currently_unhealthy
-    confirm_upgrade_if_previous_upgrade_pending
-fi
-upgrade_the_service
+#is_sevice_exists=`$rancher_command --environment $env inspect $stack/$service | head -n1`
+#if [[ $is_sevice_exists != *"Not found"* ]]
+#then
+#    exit_if_service_currently_unhealthy
+#    confirm_upgrade_if_previous_upgrade_pending
+#fi
+#upgrade_the_service
