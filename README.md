@@ -6,7 +6,7 @@ Common build scripts for bootstrapping snapCI Stages.
 
 	wget https://github.com/amaysim-au/build_scripts/archive/master.zip -O build-scripts.zip && 
 		unzip -o build-scripts.zip && 
-		sudo mv build-scripts-master/* /usr/local/bin
+		sudo mv build_scripts-master/* /usr/local/bin
 
 ## Usage
 

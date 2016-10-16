@@ -23,7 +23,7 @@ function installGolang() {
 
 function symlinkRepo() {
 	local namespace=$1
-	echo "creating repo symlink in ${GOPATH}"
+	echo "creating symlink: ${GOPATH}/src/${namespace}"
 	createGoPath
 	if [ ! -d $GOPATH/src/${namespace} ]; then
 		mkdir -p $GOPATH/src/${namespace}
