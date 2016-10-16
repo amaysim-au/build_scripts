@@ -26,5 +26,5 @@ PATH=$PATH:$GOROOT/bin:$GOPATH/bin
 go version
 
 # install glide
-curl https://glide.sh/get | sh
-glide version
+curl -s https://glide.sh/get | sh
+glide -version
