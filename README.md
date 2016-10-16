@@ -17,7 +17,8 @@ Common build scripts for bootstrapping snapCI Stages.
     check_if_app_is_UP.sh
 
     #installs golang and glide, and creates a symblink in GOPATH
-    source install_golang.sh {goversion} {namespace} 
+    source install_golang.sh {goversion} {namespace} {repo}
+    source install_golang.sh "1.7.1" "github.com/amaysim-au" "awesome-app"
 
     #installs rancher CLI
     install_rancher_cli.sh

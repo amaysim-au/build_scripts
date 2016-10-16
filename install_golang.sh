@@ -21,14 +21,14 @@ function installGolang() {
 	createGoPath
 }
 
-function symlinkRepo() {
+function symlinkGoPath() {
 	local namespace=$1
-	echo "creating symlink: ${GOPATH}/src/${namespace}"
-	createGoPath
+	local repo=$2
+	echo "creating symlink: ${GOPATH}/src/${namespace}/${repo}"
 	if [ ! -d $GOPATH/src/${namespace} ]; then
 		mkdir -p $GOPATH/src/${namespace}
 	fi
-	ln -s $PWD $GOPATH/src/$namespace
+	ln -s $PWD $GOPATH/src/$namespace/$repo
 }
 
 function installGlide() {
@@ -36,13 +36,13 @@ function installGlide() {
 	curl -s https://glide.sh/get | sh
 }
 
-if [ "$#" -ne 2 ]; then
-    echo "Usage: install_golang.sh {goversion} {namespace}"
+if [ "$#" -ne 3 ]; then
+    echo "Usage: install_golang.sh {goversion} {namespace} ${repo}"
     exit 1
 fi
 
 installGolang $1
-symlinkRepo $2
+symlinkGoPath $2 $3
 PATH=$PATH:$GOROOT/bin:$GOPATH/bin
 
 installGlide
