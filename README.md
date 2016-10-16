@@ -4,10 +4,20 @@ Common build scripts for bootstrapping snapCI Stages.
 
 ## Installation
 
-	wget https://github.com/amaysim-au/build_scripts/archive/master.zip -O build-scripts.zip && unzip -o build-scripts.zip
+	wget https://github.com/amaysim-au/build_scripts/archive/master.zip -O build-scripts.zip && 
+		unzip -o build-scripts.zip && 
+		sudo mv build-scripts-master/* /usr/local/bin
 
 ## Usage
 
-    deploy.sh - Deploys a container to rancher
-    check_if_app_is_UP.sh - Check if an application is Up
-    install_golang.sh 1.7.1
+	#Deploys a container to rancher
+    deploy.sh 
+
+    #Check if an application is Up
+    check_if_app_is_UP.sh
+
+    #installs golang and glide, and creates a symblink in GOPATH
+    source install_golang.sh {goversion} {namespace} 
+
+    #installs rancher CLI
+    install_rancher_cli.sh
