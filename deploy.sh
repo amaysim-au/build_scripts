@@ -143,9 +143,10 @@ function monitor_transition() {
             roll_back
         fi
         COUNT=$[$COUNT + 1]
-        echo "Waiting for transition status to be no. Current status: $is_transitioning"
+        echo "Waiting for transition status to be no. Previous status: $is_transitioning"
         sleep 10
         is_transitioning=`$rancher_command --environment $env inspect --format '{{ .transitioning }}' $stack/$service | head -n1`
+        echo "Current status: $is_transitioning"
     done
     echo "Transitioning status is now $is_transitioning"
 }
