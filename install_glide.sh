@@ -1,5 +1,4 @@
-#!/usr/bin/env bash -e
-
+#!/bin/bash -e
 
 function installGlide() {
 	local glideVersion="v0.12.3"

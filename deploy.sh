@@ -58,7 +58,7 @@ function upgrade_the_service(){
     echo  "Upgrading $service in $env"
     $rancher_command --environment $env --debug --wait --wait-timeout $WAIT_TIMEOUT up --batch-size 1 -s $stack -f $docker_compose_file --rancher-file $rancher_compose_file --upgrade -p -d
     monitor_transition
-    state_after_upgrade=`$rancher_command --environment $env inspect --format '{{ .state}}' $stack/$service | head -n1`
+    state_after_upgrade=`$rancher_command --env $env inspect --format '{{ .state}}' $stack/$service | head -n1`
     echo  "The state of service after upgrade is $state_after_upgrade"
     case $state_after_upgrade in
         "active")  exit 0
