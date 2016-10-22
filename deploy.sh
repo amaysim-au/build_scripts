@@ -16,7 +16,7 @@ where:
 env=Dev
 stack=QA
 service=poseidon-app
-rancher_command=./rancher
+rancher_command=rancher
 docker_compose_file=deployment/docker-compose.yml
 rancher_compose_file=deployment/rancher-compose.yml
 WAIT_TIMEOUT=120

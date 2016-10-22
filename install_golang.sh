@@ -47,5 +47,3 @@ fi
 installGolang $1
 symlinkGoPath $2 $3
 PATH=$PATH:$GOROOT/bin:$GOPATH/bin
-
-installGlide

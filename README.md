@@ -10,6 +10,9 @@ Common build scripts for bootstrapping snapCI Stages.
 
 ## Usage
 
+    #installs rancher CLI
+    install_rancher_cli.sh
+
 	#Deploys a container to rancher
     deploy.sh 
 
@@ -19,6 +22,3 @@ Common build scripts for bootstrapping snapCI Stages.
     #installs golang and glide, and creates a symblink in GOPATH
     source install_golang.sh {goversion} {namespace} {repo}
     source install_golang.sh "1.7.1" "github.com/amaysim-au" "awesome-app"
-
-    #installs rancher CLI
-    install_rancher_cli.sh
