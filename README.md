@@ -22,3 +22,7 @@ Common build scripts for bootstrapping snapCI Stages.
     #installs golang and glide, and creates a symblink in GOPATH
     source install_golang.sh {goversion} {namespace} {repo}
     source install_golang.sh "1.7.1" "github.com/amaysim-au" "awesome-app"
+
+    #install postgres
+    install_postgres.sh {VERSION} {USERNAME} {PASSWORD} {DATABASE_NAME}
+    install_postgres.sh "9.5" "test_user" "pa55w0rd" "awesome_app_test"
