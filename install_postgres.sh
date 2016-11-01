@@ -38,6 +38,6 @@ function createPostgresqlDB() {
 }
 
 addPostgresqlRepo
-install_postgres $1
+installPostgresql $1
 createPostgresqlUser $2 $3
 createPostgresqlDB $2 $4
